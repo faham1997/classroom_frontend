@@ -1,9 +1,19 @@
-function App() {
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+
+const App = () => {
   return (
-    <div className="App">
-      <h1 className="text-3xl font-bold underline">Place holder text</h1>
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" exact element={<Login />} />
+          <Route path="/register" exact element={<Register />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;
