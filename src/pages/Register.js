@@ -5,6 +5,7 @@ export default function Register() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [profession, setProfession] = useState("");
   const [password, setPassword] = useState("");
 
   async function registerUser(event) {
@@ -19,6 +20,7 @@ export default function Register() {
         name,
         email,
         password,
+        profession,
       }),
     });
 
@@ -83,6 +85,26 @@ export default function Register() {
                   placeholder="Password"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
+              </div>
+              <div>
+                <h4 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Profession
+                </h4>
+                <input
+                  required
+                  type="radio"
+                  value="student"
+                  name="gender"
+                  onChange={(e) => setProfession(e.target.value)}
+                />
+                Student
+                <input
+                  type="radio"
+                  value="teacher"
+                  name="gender"
+                  onChange={(e) => setProfession(e.target.value)}
+                />
+                Teacher
               </div>
               <button
                 type="input"
