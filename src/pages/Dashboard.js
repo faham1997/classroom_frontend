@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-//import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [profession, setProfession] = useState("");
 
@@ -22,7 +22,14 @@ function Dashboard() {
     }
   }
 
-  populateQuote();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+    } else {
+      populateQuote();
+    }
+  }, []);
 
   return (
     <div>
