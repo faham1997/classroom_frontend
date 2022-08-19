@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -7,18 +8,15 @@ export default function Login() {
   async function loginUser(event) {
     event.preventDefault();
 
-    const response = await fetch("http://localhost:1234/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
+    const body = {
+      email,
+      password,
+    };
 
-    const data = await response.json();
+    const response = await axios.post(`http://localhost:1234/api/login`, body);
+
+    const data = response.data;
+    console.log(data.user);
 
     if (data.user) {
       localStorage.setItem("token", data.user);

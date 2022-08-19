@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -11,25 +12,23 @@ export default function Register() {
   async function registerUser(event) {
     event.preventDefault();
 
-    const response = await fetch("http://localhost:1234/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        password,
-        profession,
-      }),
-    });
+    const body = {
+      name,
+      email,
+      password,
+      profession,
+    };
 
-    const data = await response.json();
+    const response = await axios.post(
+      `http://localhost:1234/api/register`,
+      body
+    );
+
+    const data = await response.data;
     if (data.status === "ok") {
       navigate("/");
     }
   }
-
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
